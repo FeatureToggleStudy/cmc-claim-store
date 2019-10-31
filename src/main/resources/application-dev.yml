@@ -1,0 +1,97 @@
+spring:
+  datasource:
+    claimstore:
+      driverClassName: org.postgresql.Driver
+      username: claimstore
+      password: claimstore
+      url: jdbc:postgresql://localhost:5430/claimstore
+    cmc:
+      driverClassName: org.postgresql.Driver
+      username: cmc
+      password: cmc
+      url: jdbc:postgresql://localhost:5431/cmc
+  mail:
+    host: localhost
+    port: 1025
+
+idam:
+  api:
+    url: http://localhost:5000
+  caseworker:
+    anonymous:
+      username : civilmoneyclaims+anonymouscitizen@gmail.com
+      password : Password12
+    system:
+      username : civilmoneyclaims+systemupdate@gmail.com
+      password : Password12
+
+courtfinder:
+  api:
+    url: https://courttribunalfinder.service.gov.uk
+
+fees:
+  api:
+    url: http://localhost:4182
+
+payments:
+  returnUrlPattern: https://localhost:3000/claim/pay/%s/receiver
+  api:
+    url: http://localhost:4421
+
+pdf-service:
+  url: http://localhost:5500
+
+document_management:
+  url: http://localhost:4460
+  userRoles: caseworker-cmc,citizen
+
+core_case_data:
+  api:
+    url: http://localhost:4452
+
+bankHolidays:
+  api:
+    url: https://www.gov.uk
+
+doc_assembly:
+  url: http://localhost:4666
+
+nonworking-days:
+  datafile: data/non-working_days.dat
+
+
+notifications:
+  frontendBaseUrl: https://localhost:3000
+  respondToClaimUrl: https://localhost:3000/first-contact/start
+
+feature_toggles:
+  watermark_pdf: true
+  reminderEmails: true
+  save_claim_state_enabled: true
+  async_event_operations_enabled: true
+  directions_questionnaire_enabled: true
+
+frontend:
+  base:
+    url: https://localhost:3000
+
+oauth2:
+  client:
+    id: none
+    secret: 12345678
+
+rpa:
+  notifications:
+    sender : sender@example.com
+    sealedClaimRecipient: recipient@example.com
+    responseRecipient: recipient@example.com
+    countyCourtJudgementRecipient: recipient@example.com
+    moreTimeRequestedRecipient: recipient@example.com
+    paidInFullRecipient: recipient@example.com
+
+send-letter:
+  url: false
+
+staff-notifications:
+  sender: sender@example.com
+  recipient: recipient@example.com

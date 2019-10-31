@@ -20,11 +20,10 @@ The service also delegates some responsibilities to other RESTful services e.g. 
 
 #### Environment variables
 
-Some environment variables are mandatory. 
+- GOV_NOTIFY_API_KEY - Ask fellow developers for this key
+- APPINSIGHTS_INSTRUMENTATIONKEY = fake-key
 
-- Ask one of the cmc-developers for latest vars
-- Check the [Helm chart values](charts/cmc-claim-store/values.template.yaml)
-- Check cmc-integration-tests repo for how the docker stack is setup: https://github.com/hmcts/cmc-integration-tests. We use this as the basis for our development environment.
+Note: Running application via devBootRun gradle task will set APPINSIGHTS_INSTRUMENTATIONKEY for you.
 
 ### Building
 
@@ -39,13 +38,12 @@ $ ./gradlew build
 
 ### Running
 
-Before you run an application you have to define `CLAIM_STORE_DB_USERNAME` and `CLAIM_STORE_DB_PASSWORD` environment variables.
-
-When environment variables has been defined, you need to create distribution by executing following command:
+When environment variables has been defined, you can start the application via the following gradle task:
 
 ```bash
-$ ./gradlew assemble
+$ ./gradlew devBootRun
 ```
+Debuggers can then be attached to port 5005
 
 If you want your code to become available to other Docker projects (e.g. for local environment testing), you need to build the image:
 

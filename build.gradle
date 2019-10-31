@@ -389,3 +389,20 @@ bootRun {
     jvmArgs = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005']
   }
 }
+
+
+task devBootRun(type: org.springframework.boot.gradle.tasks.run.BootRun) {
+  description 'Starts the app'
+  dependsOn 'assemble', 'checkstyleMain'
+  jvmArgs['-agentlib:jdwp=transport=dt_socket,server=y,suspend=f,address=5005']
+  doFirst {
+    main = bootJar.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty "spring.profiles.active", "dev"
+
+    //The following configuration needs to be environment variables and cannot be placed in spring yaml/properties
+    if(!System.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
+      environment 'APPINSIGHTS_INSTRUMENTATIONKEY', 'fake-key'
+    }
+  }
+}
